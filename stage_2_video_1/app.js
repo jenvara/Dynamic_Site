@@ -2,22 +2,32 @@
 //Solution: Use Node.js to perform the profile look ups and server our template via HTTP
 
 //1. Create a web server
+const http = require('http');
 
-var http = require('http');
-http.createServer(function (request, response) {
-  response.writeHead(200, {'Content-Type': 'text/plain'});
-  setInterval(function(){
-    response.write(new Date() + "\n");
-  }, 1000);
-  //response.end('Hello World\n');
-}).listen(3000);
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((request, response) => {
+  homeRoute(request, response);
+   
+ });
+
 console.log('Server running at http://<workspace-url>/');
 
 //2. Handle HTTP route GET / and POST / i.e. Home
+function homeRoute(request, response) {
+
   //if url == "/" && GET
     //show search
+     response.statusCode = 200;
+     response.setHeader('Content-Type', 'text/plain');
+
+     response.write("Header\n");
+     response.write("Search\n");
+     response.end("Footer\n");
   //if url == "/" && POST
     //redirect to /:username
+}
 
 //3. Handle HTTP route GET /:username i.e. /chalkers
   //if url == "/...."
